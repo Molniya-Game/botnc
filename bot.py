@@ -26,7 +26,7 @@ keyboard = VkKeyboard(one_time=True)
 keyboard.add_button('🔥Канал Discord NC🔥', color=VkKeyboardColor.POSITIVE)
 keyboard.add_button('🔥Группа NC🔥', color=VkKeyboardColor.POSITIVE)
 keyboard.add_line()
-keyboard.add_button('🥶Закрыть🥶', color=VkKeyboardColor.NEGATIVE)
+keyboard.add_button('🥶Хнык🥶', color=VkKeyboardColor.NEGATIVE)
 
 def send_msg(peer_id, message):
       vk.method("messages.send", {"peer_id": peer_id, "message": message, "random_id": 0})
