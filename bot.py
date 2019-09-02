@@ -79,4 +79,20 @@ while True:
                             vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": str(reply_id)})
                     except:
                         send_msg(peer_id, "Нельзя удалить из мультидиалога администратора...")
+                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "+админ":
+                    try:
+                        cursor.execute("""INSERT INTO team
+                                          VALUES (mi)"""
+                                       )
+                        conn.commit()
+                        send_msg(peer_id, "Успешно! По ID")
+                    except:
+                        cursor.execute("""INSERT INTO team
+                                          VALUES (mi)"""
+                                       )
+                        conn.commit()
+                        send_msg(peer_id, "Успешно! По сообщению")
+                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
+                    for row in cursor.execute("SELECT rowid, * FROM team ORDER BY admins"):
+                        send_msg(peer_id, str(row))
         time.sleep(3)
