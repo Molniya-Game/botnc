@@ -88,7 +88,7 @@ while True:
                         send_msg(peer_id, "Успешно! По ID")
                     except:
                         cursor.execute("""INSERT INTO team
-                                          VALUES (mi)"""
+                                          VALUES (reply_id)"""
                                        )
                         conn.commit()
                         send_msg(peer_id, "Успешно! По сообщению")
