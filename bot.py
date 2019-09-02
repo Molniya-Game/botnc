@@ -85,13 +85,13 @@ while True:
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "+админ":
                     try:
                         cursor.execute("""INSERT INTO team
-                                          VALUES (str(mi))"""
+                                          VALUES (admins str(mi))"""
                                        )
                         conn.commit()
                         send_msg(peer_id, "Успешно! По ID")
                     except:
                         cursor.execute("""INSERT INTO team
-                                          VALUES (str(reply_id))"""
+                                          VALUES (admins str(reply_id))"""
                                        )
                         conn.commit()
                         send_msg(peer_id, "Успешно! По сообщению")
