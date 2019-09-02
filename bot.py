@@ -8,6 +8,9 @@ import random
 import sqlite3
 import os
 
+conn = sqlite3.connect("mydatabase.db")  # или :memory: чтобы сохранить в RAM
+cursor = conn.cursor()
+
 API = "6d00d1d4e704068d70191bad2673e0cc"
 owm = pyowm.OWM(API, language='ru')
 
