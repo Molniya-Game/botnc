@@ -83,7 +83,7 @@ while True:
                             try:
                                 mi = body.split('|')[0]
                                 mem_id = mi.split('d')[1]
-                                    vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": mem_id})
+                                vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": mem_id})
                             except:
                                 reply_id = event.object.reply_message['from_id']
                                 vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": str(reply_id)})
