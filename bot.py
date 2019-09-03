@@ -117,6 +117,5 @@ while True:
                         conn.commit()
                         send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id"+str(reply_id)+"|Пользователь]")
                 elif body == "Дог тест":
-                    send_msg(peer_id, str(qa_pairs))
-                  
+                    send_msg(peer_id, qa_pairs[0])
         time.sleep(3)
