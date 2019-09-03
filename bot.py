@@ -84,10 +84,13 @@ while True:
                         send_msg(peer_id, "Нельзя удалить из мультидиалога администратора...")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "+админ":
                     try:
+                        mi = body.split('|')[0]
+                        mem_id = mi.split('d')[1]
                         cursor.execute("INSERT INTO team VALUES(?)", [mem_id])
                         conn.commit()
                         send_msg(peer_id, "Успешно! По ID")
                     except:
+                        reply_id = event.object.reply_message['from_id']
                         cursor.execute("INSERT INTO team VALUES(?)", [reply_id])
                         conn.commit()
                         send_msg(peer_id, "Успешно! По сообщению")
