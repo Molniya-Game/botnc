@@ -123,6 +123,7 @@ while True:
                         content = show_name()
                         qa_pairs = [q.split("'") for q in content]
                         send_msg(peer_id, qa_pairs[0])
+                        send_msg(peer_id, str(user_id))
                     except:
                         send_msg(peer_id, "Админов не обнаружено...")
         time.sleep(3)
