@@ -88,13 +88,25 @@ while True:
                         mem_id = mi.split('d')[1]
                         cursor.execute("INSERT INTO team VALUES(?)", [mem_id])
                         conn.commit()
-                        send_msg(peer_id, "Успешно! По ID")
+                        send_msg(peer_id, "Роль "Администратор" успешно добавлена у [id"+str(mem_id)+"|Пользователь]")
                     except:
                         reply_id = event.object.reply_message['from_id']
                         cursor.execute("INSERT INTO team VALUES(?)", [reply_id])
                         conn.commit()
-                        send_msg(peer_id, "Успешно! По сообщению")
+                        send_msg(peer_id, "Роль "Администратор" успешно добавлена у [id"+str(reply_id)+"|Пользователь]")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
                     for row in cursor.execute("SELECT rowid, * FROM team ORDER BY admins"):
                         send_msg(peer_id, str(row))
+                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-админ":
+                    try:
+                        mi = body.split('|')[0]
+                        mem_id = mi.split('d')[1]
+                        cursor.execute('DELETE FROM pat WHERE fio = ?', [mem_id])
+                        conn.commit()
+                        send_msg(peer_id, "Роль "Администратор" успешно удалена у [id"+str(mem_id)+"|Пользователь]")
+                    except:
+                        reply_id = event.object.reply_message['from_id']
+                        cursor.execute('DELETE FROM pat WHERE fio = ?', [reply_id])
+                        conn.commit()
+                        send_msg(peer_id, "Роль "Администратор" успешно удалена у [id"+str(reply_id)+"|Пользователь]")
         time.sleep(3)
