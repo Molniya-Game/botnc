@@ -78,7 +78,7 @@ while True:
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "инфа":
                     send_msg(peer_id, "Вероятно, это "+str(random.randint(0, 100))+"%")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                    if qa_pairs[0] == "['"+user_id+"']" or qa_pairs[1] == "['"+user_id+"']" or qa_pairs[2] == "['"+user_id+"']" or qa_pairs[3] == "['"+user_id+"']" or qa_pairs[4] == "['"+user_id+"']":
+                    if qa_pairs[0] == "['"+user_id+"']" or qa_pairs[1] == "['"+user_id+"']":
                         try:
                             try:
                                 mi = body.split('|')[0]
