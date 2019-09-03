@@ -36,6 +36,8 @@ def send_msg(peer_id, message):
 
 def show_name():
     return [row[0] for row in cursor.execute('SELECT admins FROM team')]
+content = show_name()
+qa_pairs = [q.split("'") for q in content]
 
 while True:
     for event in longpoll.listen():
@@ -76,14 +78,12 @@ while True:
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "инфа":
                     send_msg(peer_id, "Вероятно, это "+str(random.randint(0, 100))+"%")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                    content = show_name()
-                    qa_pairs = [q.split("'") for q in content]
-                    if qa_pairs[0] == "['"+user_id+"']" or qa_pairs[1] == "['"+user_id+"']":
+                    if qa_pairs[0] == "['"+user_id+"']" or qa_pairs[1] == "['"+user_id+"']" or qa_pairs[2] == "['"+user_id+"']" or qa_pairs[3] == "['"+user_id+"']" or qa_pairs[4] == "['"+user_id+"']":
                         try:
                             try:
                                 mi = body.split('|')[0]
                                 mem_id = mi.split('d')[1]
-                                vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": mem_id})
+                                    vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": mem_id})
                             except:
                                 reply_id = event.object.reply_message['from_id']
                                 vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": str(reply_id)})
