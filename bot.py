@@ -80,7 +80,7 @@ while True:
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
                     content = show_name()
                     qa_pairs = [q.split("'") for q in content]
-                    if qa_pairs[0] == str(user_id) or qa_pairs[1] == str(user_id) or qa_pairs[2] == str(user_id) or qa_pairs[3] == str(user_id) or qa_pairs[4] == str(user_id):
+                    if qa_pairs[0] == str(user_id):
                         try:
                             try:
                                 mi = body.split('|')[0]
