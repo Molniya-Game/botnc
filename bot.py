@@ -101,12 +101,12 @@ while True:
                     try:
                         mi = body.split('|')[0]
                         mem_id = mi.split('d')[1]
-                        cursor.execute('DELETE FROM pat WHERE fio = ?', [mem_id])
+                        cursor.execute('DELETE FROM team WHERE admins = ?', [mem_id])
                         conn.commit()
                         send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id"+str(mem_id)+"|Пользователь]")
                     except:
                         reply_id = event.object.reply_message['from_id']
-                        cursor.execute('DELETE FROM pat WHERE fio = ?', [reply_id])
+                        cursor.execute('DELETE FROM team WHERE admins = ?', [reply_id])
                         conn.commit()
                         send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id"+str(reply_id)+"|Пользователь]")
         time.sleep(3)
