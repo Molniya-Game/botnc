@@ -63,7 +63,7 @@ while True:
                     send_msg(peer_id, "Держи😊\nhttps://discord.gg/9XQVb4N")
                 elif body == "[club180514096|@nismo_777] 🔥группа nc🔥" or body == "[club180514096|•nismo corporation | game group] 🔥группа nc🔥":
                     send_msg(peer_id, "Лови😊\nhttps://vk.com/nismo_777")
-                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "погода":
+                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "погода" or body.split(' ')[0] == "/дог" and body.split(' ')[1] == "погода":
                     try:
                         observation = owm.weather_at_place(body.split(' ')[2])
                         w = observation.get_weather()
