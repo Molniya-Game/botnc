@@ -75,7 +75,7 @@ while True:
                         send_msg(peer_id, message.split(' ')[2]+"\nТекущая дата: "+str(now)+"\nТекущая температура: "+str(temp)+"°C\nСтатус: "+status+"\nСкорость ветра: "+str(speed)+"\nВлажность: "+str(vlazhn)+"%\nДавление: "+str(atm)+" мм рт. ст.")
                     except:
                         send_msg(peer_id, "Город не найден...")
-                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "инфа":
+                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "инфа" or body.split(' ')[0] == "/дог" and body.split(' ')[1] == "инфа":
                     send_msg(peer_id, "Вероятно, это "+str(random.randint(0, 100))+"%")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
                     content = show_name()
