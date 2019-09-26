@@ -81,6 +81,8 @@ while True:
                     content = show_name()
                     qa_pairs = [q.split("'") for q in content]
                     if str(qa_pairs[0]) == str(user_id):
+                        print(str(qa_pairs[0]))
+                        print(str(user_id))
                         try:
                             try:
                                 mi = body.split('|')[0]
