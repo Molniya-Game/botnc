@@ -91,8 +91,6 @@ while True:
                                 vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": str(reply_id)})
                         except:
                             send_msg(peer_id, "Нельзя удалить из мультидиалога администратора...")
-                    else:
-                        send_msg(peer_id, "Вы не являеетесь администратором!")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "+админ":
                     try:
                         mi = body.split('|')[0]
