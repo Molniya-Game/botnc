@@ -53,6 +53,8 @@ while True:
                 chat_id = event.chat_id
                 now = datetime.now() + timedelta(hours=3)
                 user_id = event.object.from_id
+                content = show_name()
+                qa_pairs = [q.split("'") for q in content]
                 print("Текст сообщения: "+str(message))
                 print("Отправлено от: "+str(peer_id))
                 print("Отправлено в: "+str(now))
@@ -77,10 +79,7 @@ while True:
                         send_msg(peer_id, "Город не найден...")
                 elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "инфа" or body.split(' ')[0] == "/дог" and body.split(' ')[1] == "инфа":
                     send_msg(peer_id, "Вероятно, это "+str(random.randint(0, 100))+"%")
-                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                    content = show_name()
-                    qa_pairs = [q.split("'") for q in content]
-                    if str(qa_pairs[0]) == str(user_id):
+                elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1" and str(qa_pairs[0]) == str(user_id):
                         print(str(qa_pairs[0]))
                         print(str(user_id))
                         try:
