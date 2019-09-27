@@ -118,7 +118,7 @@ while True:
                     conn.commit()
                     send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
-                for row in cursor.execute("SELECT rowid, * FROM team ORDER BY admins"):
+                for row in cursor.execute("SELECT admins FROM team"):
                     send_msg(peer_id, str(row))
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-админ":
                 try:
