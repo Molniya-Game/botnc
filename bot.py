@@ -59,6 +59,8 @@ while True:
             chat_id = event.chat_id
             now = datetime.now() + timedelta(hours=3)
             user_id = event.object.from_id
+            content = show_name()
+            qa_pairs = [q.split("'") for q in content]
             print("Текст сообщения: " + str(message))
             print("Отправлено от: " + str(peer_id))
             print("Отправлено в: " + str(now))
@@ -91,7 +93,6 @@ while True:
                     body.split(' ')[1] == "инфа":
                 send_msg(peer_id, "Вероятно, это " + str(random.randint(0, 100)) + "%")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                conn.open()
                 print(str(qa_pairs[0]))
                 print(str(user_id))
                 try:
@@ -108,20 +109,15 @@ while True:
                 try:
                     mi = body.split('|')[0]
                     mem_id = mi.split('d')[1]
-                    conn.open()
                     cursor.execute("INSERT INTO team VALUES(?)", [mem_id])
                     conn.commit()
-                    conn.close()  
                     send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(mem_id) + "|Пользователь]")
                 except:
                     reply_id = event.object.reply_message['from_id']
-                    conn.open()
                     cursor.execute("INSERT INTO team VALUES(?)", [reply_id])
                     conn.commit()
-                    conn.close()
                     send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
-                conn.open()
                 for row in cursor.execute("SELECT rowid, * FROM team ORDER BY admins"):
                     send_msg(peer_id, str(row))
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-админ":
@@ -137,7 +133,6 @@ while True:
                     send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id" + str(reply_id) + "|Пользователь]")
                     conn.commit()
             elif body == "дог тест":
-                conn.open()
                 content = show_name()
                 qa_pairs = [q.split("'") for q in content]
                 send_msg(peer_id, qa_pairs[0])
