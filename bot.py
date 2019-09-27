@@ -59,8 +59,6 @@ while True:
             chat_id = event.chat_id
             now = datetime.now() + timedelta(hours=3)
             user_id = event.object.from_id
-            content = show_name()
-            qa_pairs = [q.split("'") for q in content]
             print("Текст сообщения: " + str(message))
             print("Отправлено от: " + str(peer_id))
             print("Отправлено в: " + str(now))
