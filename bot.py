@@ -93,7 +93,8 @@ while True:
                     body.split(' ')[1] == "инфа":
                 send_msg(peer_id, "Вероятно, это " + str(random.randint(0, 100)) + "%")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                print(qa_pairs[0])
+                conn.open()
+                print(str(qa_pairs[0]))
                 print(str(user_id))
                 try:
                     try:
@@ -110,13 +111,15 @@ while True:
                     mi = body.split('|')[0]
                     mem_id = mi.split('d')[1]
                     cursor.execute("INSERT INTO team VALUES(?)", [mem_id])
-                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(mem_id) + "|Пользователь]")
                     conn.commit()
+                    conn.close()  
+                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(mem_id) + "|Пользователь]")
                 except:
                     reply_id = event.object.reply_message['from_id']
                     cursor.execute("INSERT INTO team VALUES(?)", [reply_id])
-                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
                     conn.commit()
+                    conn.close()
+                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
                 for row in cursor.execute("SELECT rowid, * FROM team ORDER BY admins"):
                     send_msg(peer_id, str(row))
@@ -134,9 +137,10 @@ while True:
                     conn.commit()
             elif body == "дог тест":
                 try:
+                    conn.open()
                     content = show_name()
                     qa_pairs = [q.split("'") for q in content]
-                    send_msg(peer_id, qa_pairs[0] + qa_pairs[1] + qa_pairs[2] + qa_pairs[3])
+                    send_msg(peer_id, qa_pairs[0])
                     send_msg(peer_id, str(user_id))
                 except:
                     send_msg(peer_id, "Админов не обнаружено...")
