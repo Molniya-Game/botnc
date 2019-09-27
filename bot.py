@@ -110,16 +110,13 @@ while True:
                     mi = body.split('|')[0]
                     mem_id = mi.split('d')[1]
                     cursor.execute("INSERT INTO team VALUES(?)", [mem_id])
-                    conn.commit()
-                    conn.close()
                     send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(mem_id) + "|Пользователь]")
+                    conn.commit()
                 except:
                     reply_id = event.object.reply_message['from_id']
                     cursor.execute("INSERT INTO team VALUES(?)", [reply_id])
+                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
                     conn.commit()
-                    conn.close()
-                    send_msg(peer_id,
-                             "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
                 for row in cursor.execute("SELECT rowid, * FROM team ORDER BY admins"):
                     send_msg(peer_id, str(row))
@@ -128,15 +125,13 @@ while True:
                     mi = body.split('|')[0]
                     mem_id = mi.split('d')[1]
                     cursor.execute('DELETE FROM team WHERE admins = ?', [mem_id])
-                    conn.commit()
-                    conn.close()
                     send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id" + str(mem_id) + "|Пользователь]")
+                    conn.commit()
                 except:
                     reply_id = event.object.reply_message['from_id']
                     cursor.execute('DELETE FROM team WHERE admins = ?', [reply_id])
-                    conn.commit()
-                    conn.close()
                     send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id" + str(reply_id) + "|Пользователь]")
+                    conn.commit()
             elif body == "дог тест":
                 try:
                     content = show_name()
