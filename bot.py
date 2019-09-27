@@ -134,10 +134,9 @@ while True:
                     send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id" + str(reply_id) + "|Пользователь]")
                     conn.commit()
             elif body == "дог тест":
-                try:
-                    conn.open()
-                    content = show_name()
-                    qa_pairs = [q.split("'") for q in content]
-                    send_msg(peer_id, qa_pairs[0])
-                    send_msg(peer_id, str(user_id))
+                conn.open()
+                content = show_name()
+                qa_pairs = [q.split("'") for q in content]
+                send_msg(peer_id, qa_pairs[0])
+                send_msg(peer_id, str(user_id))
         time.sleep(3)
