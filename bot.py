@@ -93,7 +93,9 @@ while True:
                     body.split(' ')[1] == "инфа":
                 send_msg(peer_id, "Вероятно, это " + str(random.randint(0, 100)) + "%")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                print(str(qa_pairs[0]))
+                print(qa_pairs[0])
+                print(qa_pairs[1])
+                print(qa_pairs[2])
                 print(str(user_id))
                 try:
                     try:
