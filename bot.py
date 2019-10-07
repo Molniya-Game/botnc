@@ -29,7 +29,7 @@ keyboard = VkKeyboard(one_time=True)
 keyboard.add_button('🔥Канал Discord NC🔥', color=VkKeyboardColor.POSITIVE)
 keyboard.add_button('🔥Группа NC🔥', color=VkKeyboardColor.POSITIVE)
 keyboard.add_line()
-keyboard.add_button('🥶Хнык🥶', color=VkKeyboardColor.NEGATIVE)
+keyboard.add_button('🥶Закрыть🥶', color=VkKeyboardColor.NEGATIVE)
 
 
 def send_msg(peer_id, message):
@@ -70,7 +70,7 @@ while True:
                           {"peer_id": peer_id, "message": "Выбирай ;)", "keyboard": keyboard.get_keyboard(),
                            "random_id": 0})
             elif body == "[club180514096|@nismo_777] 🔥канал discord nc🔥" or body == "[club180514096|•nismo corporation | game group] 🔥канал discord nc🔥":
-                send_msg(peer_id, "Держи😊\nhttps://discord.gg/9XQVb4N")
+                send_msg(peer_id, "Держи😊\nНе покажу)")
             elif body == "[club180514096|@nismo_777] 🔥группа nc🔥" or body == "[club180514096|•nismo corporation | game group] 🔥группа nc🔥":
                 send_msg(peer_id, "Лови😊\nhttps://vk.com/nismo_777")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "погода" or body.split(' ')[0] == "/дог" and \
