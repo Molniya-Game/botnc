@@ -52,7 +52,7 @@ while True:
             now = datetime.now() + timedelta(hours=3)
             user_id = event.object.from_id
             user_attachments = event.object.attachments
-            attachments_owner_id = event.object.attachments['photo']['owner_id']
+            attachments_owner_id = event.object.attachments['photo']
             print("Текст сообщения: " + str(message))
             print("Отправлено от: " + str(peer_id))
             print("Вложение: " + str(user_attachments))
