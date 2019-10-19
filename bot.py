@@ -5,11 +5,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import pyowm
 from datetime import datetime, timedelta
 import random
-import sqlite3
 import os
-
-conn = sqlite3.connect("mydatabase.db")  # или :memory: чтобы сохранить в RAM
-cursor = conn.cursor()
 
 API = "6d00d1d4e704068d70191bad2673e0cc"
 owm = pyowm.OWM(API, language='ru')
@@ -39,10 +35,6 @@ def send_msg(peer_id, message):
 def show_name():
     return [row[0] for row in cursor.execute('SELECT admins FROM team')]
 
-
-content = show_name()
-qa_pairs = [q.split("'") for q in content]
-
 while True:
     for event in longpoll.listen():
         if event.type == VkBotEventType.WALL_POST_NEW:
@@ -59,10 +51,10 @@ while True:
             chat_id = event.chat_id
             now = datetime.now() + timedelta(hours=3)
             user_id = event.object.from_id
-            content = show_name()
-            qa_pairs = [q.split("'") for q in content]
+            user_attachments = event.object.attachments
             print("Текст сообщения: " + str(message))
             print("Отправлено от: " + str(peer_id))
+            print("Вложение: " + str(user_attachments))
             print("Отправлено в: " + str(now))
             print("---------------------------------------")
             if body == "/info":
@@ -93,10 +85,6 @@ while True:
                     body.split(' ')[1] == "инфа":
                 send_msg(peer_id, "Вероятно, это " + str(random.randint(0, 100)) + "%")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-1":
-                print(qa_pairs[0])
-                print(qa_pairs[1])
-                print(qa_pairs[2])
-                print(str(user_id))
                 try:
                     try:
                         mi = body.split('|')[0]
@@ -107,36 +95,4 @@ while True:
                         vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": str(reply_id)})
                 except:
                     send_msg(peer_id, "Нельзя удалить из мультидиалога администратора...")
-            elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "+админ":
-                try:
-                    mi = body.split('|')[0]
-                    mem_id = mi.split('d')[1]
-                    cursor.execute("INSERT INTO team VALUES(?)", [mem_id])
-                    conn.commit()
-                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(mem_id) + "|Пользователь]")
-                except:
-                    reply_id = event.object.reply_message['from_id']
-                    cursor.execute("INSERT INTO team VALUES(?)", [reply_id])
-                    conn.commit()
-                    send_msg(peer_id, "Роль \"Администратор\" успешно добавлена у [id" + str(reply_id) + "|Пользователь]")
-            elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "админы":
-                for row in cursor.execute("SELECT admins FROM team"):
-                    send_msg(peer_id, str(row))
-            elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "-админ":
-                try:
-                    mi = body.split('|')[0]
-                    mem_id = mi.split('d')[1]
-                    cursor.execute('DELETE FROM team WHERE admins = ?', [mem_id])
-                    send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id" + str(mem_id) + "|Пользователь]")
-                    conn.commit()
-                except:
-                    reply_id = event.object.reply_message['from_id']
-                    cursor.execute('DELETE FROM team WHERE admins = ?', [reply_id])
-                    send_msg(peer_id, "Роль \"Администратор\" успешно удалена у [id" + str(reply_id) + "|Пользователь]")
-                    conn.commit()
-            elif body == "дог тест":
-                content = show_name()
-                qa_pairs = [q.split("'") for q in content]
-                send_msg(peer_id, qa_pairs[0])
-                send_msg(peer_id, str(user_id))
         time.sleep(3)
