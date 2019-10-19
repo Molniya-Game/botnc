@@ -52,12 +52,10 @@ while True:
             now = datetime.now() + timedelta(hours=3)
             user_id = event.object.from_id
             user_attachments = event.object.attachments
-            type = event.object.attachments['type']
             attachments_owner_id = event.object.attachments['photo']['owner_id']
             print("Текст сообщения: " + str(message))
             print("Отправлено от: " + str(peer_id))
             print("Вложение: " + str(user_attachments))
-            print("Тип: " + str(type))
             print("Овнер Id: " + str(attachments_owner_id))
             print("Отправлено в: " + str(now))
             print("---------------------------------------")
