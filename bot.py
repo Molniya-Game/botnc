@@ -101,8 +101,7 @@ while True:
                     send_msg(peer_id, "Нельзя удалить из мультидиалога администратора...")
             elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "отправь":
                 vk.method("messages.send",
-                          {"peer_id": peer_id, "message": "Держи💁‍♂",
-                           "attachment": "photo" + str(attachments_owner_id) + "_" + str(attachments_id),
-                           "random_id": 0})
-
+                          {"peer_id": peer_id, "message": "Держи💁‍♂", "attachment": "photo212559651_457242393", "random_id": 0})
         time.sleep(3)
+
+# {"peer_id": peer_id, "message": "Держи💁‍♂", "attachment": "photo" + str(attachments_owner_id) + "_" + str(attachments_id), "random_id": 0})
