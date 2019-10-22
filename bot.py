@@ -58,7 +58,7 @@ while True:
             print("Отправлено от: " + str(peer_id))
             print("Вложение: " + str(user_attachments))
             print("Овнер Id: " + str(attachments_owner_id))
-            print("Id: " + str(attachments_id)
+            print("Id: " + str(attachments_id))
             print("Отправлено в: " + str(now))
             print("---------------------------------------")
             if body == "/info":
