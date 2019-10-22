@@ -52,11 +52,13 @@ while True:
             now = datetime.now() + timedelta(hours=3)
             user_id = event.object.from_id
             user_attachments = event.object.attachments
-            attachments_owner_id = event.object.attachments[0]['type']
+            attachments_owner_id = event.object.attachments[0]['photo']['owner_id']
+            attachments_id = event.object.attachments[0]['photo']['id']
             print("Текст сообщения: " + str(message))
             print("Отправлено от: " + str(peer_id))
             print("Вложение: " + str(user_attachments))
             print("Овнер Id: " + attachments_owner_id)
+            print("Id: " + attachments_id)
             print("Отправлено в: " + str(now))
             print("---------------------------------------")
             if body == "/info":
@@ -97,4 +99,10 @@ while True:
                         vk.method("messages.removeChatUser", {"chat_id": str(chat_id), "member_id": str(reply_id)})
                 except:
                     send_msg(peer_id, "Нельзя удалить из мультидиалога администратора...")
+            elif body.split(' ')[0] == "дог" and body.split(' ')[1] == "отправь":
+                vk.method("messages.send",
+                          {"peer_id": peer_id, "message": "Держи💁‍♂",
+                           "attachment": "photo" + str(attachments_owner_id) + "_" + str(attachments_id),
+                           "random_id": 0})
+
         time.sleep(3)
